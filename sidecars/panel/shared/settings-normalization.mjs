@@ -6,6 +6,7 @@ export const SUPPORTED_LOCALES = Object.freeze([
   'zh-CN',
   'zh-TW',
   'en-US',
+  'vi-VN',
   'ja-JP',
   'ko-KR',
   'de-DE',
@@ -201,6 +202,7 @@ export function resolveLocaleFromLanguageTag(rawTag, fallback = 'en-US') {
   if (clean === 'ko' || clean.startsWith('ko-')) return 'ko-KR';
   if (clean === 'de' || clean.startsWith('de-')) return 'de-DE';
   if (clean === 'fr' || clean.startsWith('fr-')) return 'fr-FR';
+  if (clean === 'vi' || clean.startsWith('vi-')) return 'vi-VN';
   if (clean === 'en' || clean.startsWith('en-')) return 'en-US';
   return fallback;
 }

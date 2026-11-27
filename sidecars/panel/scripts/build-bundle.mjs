@@ -613,6 +613,7 @@ export function buildBundle(panelDir = PANEL_DIR) {
     'src/i18n/ko-KR.js',
     'src/i18n/de-DE.js',
     'src/i18n/fr-FR.js',
+    'src/i18n/vi-VN.js',
     'src/i18n/index.js',
     'src/core/appearance.js',
     'src/core/domPatch.js',

@@ -47,6 +47,7 @@ function getLanguageOptions() {
     { value: 'zh-CN', label: t('settings.gen.langZh') },
     { value: 'zh-TW', label: t('settings.gen.langZhTw') },
     { value: 'en-US', label: t('settings.gen.langEn') },
+    { value: 'vi-VN', label: t('settings.gen.langVi') },
     { value: 'ja-JP', label: t('settings.gen.langJa') },
     { value: 'ko-KR', label: t('settings.gen.langKo') },
     { value: 'de-DE', label: t('settings.gen.langDe') },

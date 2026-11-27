@@ -239,7 +239,7 @@ test('applyAppearanceToRoot and SettingsGeneralTab toggle data-modern-ui + data-
   const langSelectOpts = tab.refs.languageSwitch.el.querySelectorAll('.select-option');
   assert.deepEqual(
     langSelectOpts.map((opt) => opt.querySelector('.select-option-text').textContent),
-    ['跟随系统', '简体中文', '繁體中文', 'English', '日本語', '한국어', 'Deutsch', 'Français']
+    ['跟随系统', '简体中文', '繁體中文', 'English', 'Tiếng Việt', '日本語', '한국어', 'Deutsch', 'Français']
   );
   assert.equal(langSelectOpts[0].classList.contains('is-selected'), true);
   tab.refs.languageSwitch.el

@@ -734,6 +734,7 @@ export const I18N_MESSAGES_ZH_CN = Object.freeze({
   'settings.gen.langZh': '简体中文',
   'settings.gen.langZhTw': '繁體中文',
   'settings.gen.langEn': 'English',
+  'settings.gen.langVi': 'Tiếng Việt',
   'settings.gen.langJa': '日本語',
   'settings.gen.langKo': '한국어',
   'settings.gen.langDe': 'Deutsch',
