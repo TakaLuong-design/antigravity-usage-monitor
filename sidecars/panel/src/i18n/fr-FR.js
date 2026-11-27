@@ -807,6 +807,7 @@ export const I18N_MESSAGES_FR_FR = Object.freeze({
   "settings.str.mountMode": "Mode d’ancrage",
   "settings.str.mountDual": "Double ancrage (Barre de titre + Latérale)",
   "settings.str.mountComposer": "Ancrage saisie (Zone de saisie + Latérale)",
+  "settings.str.mountComposerTop": "Au-dessus de la saisie (Haut de saisie + Latérale)",
   "settings.str.mountSidebar": "Barre latérale seule",
   "settings.bridge.restartTitle": "Option de lancement configurée — Redémarrez pour activer",
   "settings.bridge.ctxRestartTitle": "Option de lancement configurée — Redémarrez pour le contexte",

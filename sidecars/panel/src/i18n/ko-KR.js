@@ -807,6 +807,7 @@ export const I18N_MESSAGES_KO_KR = Object.freeze({
   "settings.str.mountMode": "패널 마운트 방식",
   "settings.str.mountDual": "듀얼 마운트 (제목 표시줄 + 사이드바)",
   "settings.str.mountComposer": "입력창 마운트 (입력창 + 사이드바)",
+  "settings.str.mountComposerTop": "입력창 위 (입력창 상단 + 사이드바)",
   "settings.str.mountSidebar": "사이드바 전용",
   "settings.bridge.restartTitle": "실행 플래그 자동 설정 완료 — 한 번 재시작하여 활성화",
   "settings.bridge.ctxRestartTitle": "실행 플래그 자동 설정 완료 — 컨텍스트 재정의를 위해 한 번 재시작",

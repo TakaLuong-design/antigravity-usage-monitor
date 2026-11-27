@@ -3673,7 +3673,7 @@ export function createWindowBridgeController(options) {
       return { alive: false, dockKind: '', visible: false };
     }
 
-    if (mountMode !== 'composer' && (hadInjectedChatFrames || forceReinject)) {
+    if (mountMode !== 'composer' && mountMode !== 'composer-top' && (hadInjectedChatFrames || forceReinject)) {
       for (const chatWsUrl of collectAllChatDebuggerUrls(targets)) {
         await disposeSingleTarget(chatWsUrl);
       }
@@ -3682,7 +3682,7 @@ export function createWindowBridgeController(options) {
 
     for (const target of targets) {
       try {
-        if (mountMode === 'composer' && target.isIdeWorkbench) {
+        if ((mountMode === 'composer' || mountMode === 'composer-top') && target.isIdeWorkbench) {
           const chatList = Array.isArray(target.ideChatTargets) ? target.ideChatTargets : [];
           let chatComposerActive = false;
           for (const chatTarget of chatList) {
@@ -3692,7 +3692,11 @@ export function createWindowBridgeController(options) {
                 ideRouteOverride: chatTarget.cascadeId || target.ideRouteCascadeId,
                 isIdeChatFrame: true,
               });
-              if (chatState.alive && chatState.visible && chatState.dockKind === 'composer') {
+              if (
+                chatState.alive &&
+                chatState.visible &&
+                (chatState.dockKind === 'composer' || chatState.dockKind === 'composer-top')
+              ) {
                 chatComposerActive = true;
               }
             } catch {

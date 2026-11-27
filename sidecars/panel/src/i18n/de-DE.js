@@ -807,6 +807,7 @@ export const I18N_MESSAGES_DE_DE = Object.freeze({
   "settings.str.mountMode": "Panel-Andockmodus",
   "settings.str.mountDual": "Dual (Titelleiste + Seitenleiste)",
   "settings.str.mountComposer": "Composer (Eingabefeld + Seitenleiste)",
+  "settings.str.mountComposerTop": "Über Composer (Über Eingabefeld + Seitenleiste)",
   "settings.str.mountSidebar": "Nur Seitenleiste",
   "settings.bridge.restartTitle": "Startflag eingerichtet — Einmal neu starten",
   "settings.bridge.ctxRestartTitle": "Startflag eingerichtet — Neustart für Kontext-Override",

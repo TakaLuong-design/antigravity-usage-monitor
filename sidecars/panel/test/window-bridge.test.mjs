@@ -1537,7 +1537,7 @@ test('Compiled app.js mounts dual Shadow DOM hosts, tracks /c/<uuid> routes, pro
     const langOpts = langSelectEl.querySelectorAll('.select-option');
     assert.deepEqual(
       langOpts.map((opt) => opt.querySelector('.select-option-text').textContent),
-      ['跟随系统', '简体中文', '繁體中文', 'English', '日本語', '한국어', 'Deutsch', 'Français'],
+      ['跟随系统', '简体中文', '繁體中文', 'English', 'Tiếng Việt', '日本語', '한국어', 'Deutsch', 'Français'],
       'UI language select lists auto + all 7 supported locales'
     );
     langSelectEl.querySelector('.select-trigger').dispatchEvent({ type: 'click', stopPropagation() {} });
@@ -1592,7 +1592,7 @@ test('Compiled app.js mounts dual Shadow DOM hosts, tracks /c/<uuid> routes, pro
     assert.equal(subNavBtns[1].textContent, 'Structure');
     assert.equal(subNavBtns[2].textContent, 'Sessions');
     assert.equal(subNavBtns[3].textContent, 'Other');
-    await selectUiLangByIndex(4);
+    await selectUiLangByIndex(5);
     assert.equal(mockSettings.language, 'ja-JP');
     assert.match(currencySelectEl.querySelector('.select-label').textContent, /JPY/);
     assert.equal(pillTabs[0].querySelector('.pill-tab-label').textContent, 'ライブ');
@@ -1721,7 +1721,7 @@ test('Compiled app.js mounts dual Shadow DOM hosts, tracks /c/<uuid> routes, pro
     assert.equal(previewCapsuleBar.classList.contains('is-composer'), true);
 
     mountSelectEl.querySelector('.select-trigger').dispatchEvent({ type: 'click', stopPropagation() {} });
-    mountSelectEl.querySelectorAll('.select-option')[2].dispatchEvent({ type: 'click', stopPropagation() {} });
+    mountSelectEl.querySelectorAll('.select-option')[3].dispatchEvent({ type: 'click', stopPropagation() {} });
     await new Promise((r) => setTimeout(r, 30));
     assert.equal(mockSettings.windowMountMode, 'sidebar', 'windowMountMode persisted as sidebar');
     assert.equal(mockSettings.enableWindowOverlay, false, 'enableWindowOverlay persisted as false');

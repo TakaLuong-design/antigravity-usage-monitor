@@ -788,19 +788,46 @@ export function resolveActiveDockTarget(options = undefined) {
     options?.mountMode ||
     normalizeClientWindowMountMode(rawMode, settings?.enableWindowOverlay);
   if (isIdeExtensionChatFrame()) {
-    if (mountMode !== 'composer') return null;
-    return findHostComposerAutoTarget(
-      options?.capsuleNode || null,
-      options?.portalNode || null,
-      options?.patchedNode || null
-    );
-  }
-  if (mountMode === 'composer') {
+    if (mountMode !== 'composer' && mountMode !== 'composer-top') return null;
     const composerTarget = findHostComposerAutoTarget(
       options?.capsuleNode || null,
       options?.portalNode || null,
       options?.patchedNode || null
     );
+    if (mountMode === 'composer-top' && composerTarget?.titlebar) {
+      const parent = composerTarget.titlebar.parentElement || composerTarget.titlebar.parentNode;
+      if (parent) {
+        return {
+          kind: 'composer-top',
+          workbench: composerTarget.workbench || null,
+          titlebar: composerTarget.titlebar,
+          targetContainer: parent,
+          anchorNode: composerTarget.titlebar,
+          actionToolbar: null,
+        };
+      }
+    }
+    return composerTarget;
+  }
+  if (mountMode === 'composer' || mountMode === 'composer-top') {
+    const composerTarget = findHostComposerAutoTarget(
+      options?.capsuleNode || null,
+      options?.portalNode || null,
+      options?.patchedNode || null
+    );
+    if (mountMode === 'composer-top' && composerTarget?.titlebar) {
+      const parent = composerTarget.titlebar.parentElement || composerTarget.titlebar.parentNode;
+      if (parent) {
+        return {
+          kind: 'composer-top',
+          workbench: composerTarget.workbench || null,
+          titlebar: composerTarget.titlebar,
+          targetContainer: parent,
+          anchorNode: composerTarget.titlebar,
+          actionToolbar: null,
+        };
+      }
+    }
     if (composerTarget) return composerTarget;
   }
   const ideTarget = findIdeWorkbenchTitlebar();

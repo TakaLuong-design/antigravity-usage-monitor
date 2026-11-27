@@ -8430,6 +8430,34 @@ html[data-standalone="true"] .app-shell {
   padding: 0 8px;
 }
 
+:host(.wm-capsule-host[data-dock="composer-top"]) {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: 26px;
+  gap: 4px;
+  margin-bottom: 6px;
+  padding: 0 2px;
+  box-sizing: border-box;
+  align-self: stretch;
+}
+
+:host(.wm-capsule-host[data-dock="composer-top"]) .wm-multi-btn,
+:host(.wm-capsule-host[data-dock="composer-top"]) .wm-capsule-btn {
+  height: 26px;
+  border-radius: var(--radius-pill);
+}
+
+:host(.wm-capsule-host[data-dock="composer-top"]) .wm-multi-btn {
+  padding: 0 7px;
+}
+
+:host(.wm-capsule-host[data-dock="composer-top"]) .wm-capsule-btn {
+  padding: 0 8px;
+}
+
 :host(.wm-capsule-host[data-dock="ide-titlebar"]) {
   position: relative;
   margin-left: auto;

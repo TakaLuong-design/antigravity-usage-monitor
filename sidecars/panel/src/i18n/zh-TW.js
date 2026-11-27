@@ -807,6 +807,7 @@ export const I18N_MESSAGES_ZH_TW = Object.freeze({
   "settings.str.mountMode": "面板掛載方式",
   "settings.str.mountDual": "雙重掛載 (標題列 + 側邊欄)",
   "settings.str.mountComposer": "輸入框掛載 (輸入框 + 側邊欄)",
+  "settings.str.mountComposerTop": "輸入框上方 (輸入框頂部 + 側邊欄)",
   "settings.str.mountSidebar": "僅側邊欄",
   "settings.bridge.restartTitle": "已自動補齊啟動參數，重新啟動一次即可啟用懸浮膠囊",
   "settings.bridge.ctxRestartTitle": "已自動補齊啟動參數，重新啟動一次即可啟用上下文覆寫",

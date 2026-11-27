@@ -92,6 +92,7 @@ function getMountModeOptions() {
   return [
     { value: 'dual', label: t('settings.str.mountDual') },
     { value: 'composer', label: t('settings.str.mountComposer') },
+    { value: 'composer-top', label: t('settings.str.mountComposerTop') },
     { value: 'sidebar', label: t('settings.str.mountSidebar') },
   ];
 }

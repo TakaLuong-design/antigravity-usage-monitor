@@ -807,6 +807,7 @@ export const I18N_MESSAGES_JA_JP = Object.freeze({
   "settings.str.mountMode": "パネル配置モード",
   "settings.str.mountDual": "デュアル配置 (タイトルバー + サイドバー)",
   "settings.str.mountComposer": "入力欄配置 (入力欄 + サイドバー)",
+  "settings.str.mountComposerTop": "入力欄の上 (入力欄上部 + サイドバー)",
   "settings.str.mountSidebar": "サイドバーのみ",
   "settings.bridge.restartTitle": "起動引数を自動設定済み — 一度再起動すると有効化されます",
   "settings.bridge.ctxRestartTitle": "起動引数を自動設定済み — 一度再起動するとコンテキスト上書きが有効になります",

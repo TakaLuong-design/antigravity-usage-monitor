@@ -344,6 +344,9 @@ export function normalizePluginUpdateMode(mode, legacyAutoUpdate) {
  */
 export function normalizeWindowMountMode(mode, legacyEnableOverlay) {
   const m = String(mode ?? '').trim().toLowerCase();
+  if (m === 'composer-top' || m === 'composer_top' || m === 'above-composer' || m === 'above_composer') {
+    return 'composer-top';
+  }
   if (m === 'composer' || m === 'input') return 'composer';
   if (m === 'sidebar' || m === 'sidebar_only' || m === 'off') return 'sidebar';
   if (m === 'dual' || m === 'topbar') return 'dual';

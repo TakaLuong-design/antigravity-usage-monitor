@@ -275,6 +275,9 @@ function normalizePluginUpdateMode(mode, legacyAutoUpdate) {
 
 function normalizeWindowMountMode(mode, legacyEnableOverlay) {
   const m = String(mode ?? '').trim().toLowerCase();
+  if (m === 'composer-top' || m === 'composer_top' || m === 'above-composer' || m === 'above_composer') {
+    return 'composer-top';
+  }
   if (m === 'composer' || m === 'input') return 'composer';
   if (m === 'sidebar' || m === 'sidebar_only' || m === 'off') return 'sidebar';
   if (m === 'dual' || m === 'topbar') return 'dual';
@@ -2377,6 +2380,7 @@ const I18N_MESSAGES_ZH_CN = Object.freeze({
   'settings.str.mountMode': '面板挂载方式',
   'settings.str.mountDual': '双栖挂载 (顶部栏 + 侧边栏)',
   'settings.str.mountComposer': '输入框挂载 (输入框 + 侧边栏)',
+  'settings.str.mountComposerTop': '输入框上方 (输入框顶部 + 侧边栏)',
   'settings.str.mountSidebar': '仅侧边栏',
   'settings.bridge.restartTitle': '已自动补齐启动参数，重启一次即可启用悬浮胶囊',
   'settings.bridge.ctxRestartTitle': '已自动补齐启动参数，重启一次即可激活上下文覆写',
@@ -3629,6 +3633,7 @@ const I18N_MESSAGES_ZH_TW = Object.freeze({
   "settings.str.mountMode": "面板掛載方式",
   "settings.str.mountDual": "雙重掛載 (標題列 + 側邊欄)",
   "settings.str.mountComposer": "輸入框掛載 (輸入框 + 側邊欄)",
+  "settings.str.mountComposerTop": "輸入框上方 (輸入框頂部 + 側邊欄)",
   "settings.str.mountSidebar": "僅側邊欄",
   "settings.bridge.restartTitle": "已自動補齊啟動參數，重新啟動一次即可啟用懸浮膠囊",
   "settings.bridge.ctxRestartTitle": "已自動補齊啟動參數，重新啟動一次即可啟用上下文覆寫",
@@ -4896,6 +4901,7 @@ const I18N_MESSAGES_EN_US = Object.freeze({
   'settings.str.mountMode': 'Panel Mount Mode',
   'settings.str.mountDual': 'Dual Mount (Titlebar + Sidebar)',
   'settings.str.mountComposer': 'Composer Mount (Input Box + Sidebar)',
+  'settings.str.mountComposerTop': 'Above Composer (Above Input Box + Sidebar)',
   'settings.str.mountSidebar': 'Sidebar Only',
   'settings.bridge.restartTitle': 'Launch Flag Auto-Configured — Restart Once to Activate',
   'settings.bridge.ctxRestartTitle': 'Launch Flag Auto-Configured — Restart Once for Context Override',
@@ -6148,6 +6154,7 @@ const I18N_MESSAGES_JA_JP = Object.freeze({
   "settings.str.mountMode": "パネル配置モード",
   "settings.str.mountDual": "デュアル配置 (タイトルバー + サイドバー)",
   "settings.str.mountComposer": "入力欄配置 (入力欄 + サイドバー)",
+  "settings.str.mountComposerTop": "入力欄の上 (入力欄上部 + サイドバー)",
   "settings.str.mountSidebar": "サイドバーのみ",
   "settings.bridge.restartTitle": "起動引数を自動設定済み — 一度再起動すると有効化されます",
   "settings.bridge.ctxRestartTitle": "起動引数を自動設定済み — 一度再起動するとコンテキスト上書きが有効になります",
@@ -7395,6 +7402,7 @@ const I18N_MESSAGES_KO_KR = Object.freeze({
   "settings.str.mountMode": "패널 마운트 방식",
   "settings.str.mountDual": "듀얼 마운트 (제목 표시줄 + 사이드바)",
   "settings.str.mountComposer": "입력창 마운트 (입력창 + 사이드바)",
+  "settings.str.mountComposerTop": "입력창 위 (입력창 상단 + 사이드바)",
   "settings.str.mountSidebar": "사이드바 전용",
   "settings.bridge.restartTitle": "실행 플래그 자동 설정 완료 — 한 번 재시작하여 활성화",
   "settings.bridge.ctxRestartTitle": "실행 플래그 자동 설정 완료 — 컨텍스트 재정의를 위해 한 번 재시작",
@@ -8642,6 +8650,7 @@ const I18N_MESSAGES_DE_DE = Object.freeze({
   "settings.str.mountMode": "Panel-Andockmodus",
   "settings.str.mountDual": "Dual (Titelleiste + Seitenleiste)",
   "settings.str.mountComposer": "Composer (Eingabefeld + Seitenleiste)",
+  "settings.str.mountComposerTop": "Über Composer (Über Eingabefeld + Seitenleiste)",
   "settings.str.mountSidebar": "Nur Seitenleiste",
   "settings.bridge.restartTitle": "Startflag eingerichtet — Einmal neu starten",
   "settings.bridge.ctxRestartTitle": "Startflag eingerichtet — Neustart für Kontext-Override",
@@ -9889,6 +9898,7 @@ const I18N_MESSAGES_FR_FR = Object.freeze({
   "settings.str.mountMode": "Mode d’ancrage",
   "settings.str.mountDual": "Double ancrage (Barre de titre + Latérale)",
   "settings.str.mountComposer": "Ancrage saisie (Zone de saisie + Latérale)",
+  "settings.str.mountComposerTop": "Au-dessus de la saisie (Haut de saisie + Latérale)",
   "settings.str.mountSidebar": "Barre latérale seule",
   "settings.bridge.restartTitle": "Option de lancement configurée — Redémarrez pour activer",
   "settings.bridge.ctxRestartTitle": "Option de lancement configurée — Redémarrez pour le contexte",
@@ -11156,6 +11166,7 @@ const I18N_MESSAGES_VI_VN = Object.freeze({
   'settings.str.mountMode': 'Vị trí gắn bảng',
   'settings.str.mountDual': 'Gắn đôi (Thanh tiêu đề + Sidebar)',
   'settings.str.mountComposer': 'Gắn khung nhập (Ô nhập liệu + Sidebar)',
+  'settings.str.mountComposerTop': 'Trên khung nhập (Phía trên ô nhập + Sidebar)',
   'settings.str.mountSidebar': 'Chỉ Sidebar',
   'settings.bridge.restartTitle': 'Đã tự cấu hình cờ khởi chạy — Khởi động lại 1 lần để kích hoạt',
   'settings.bridge.ctxRestartTitle': 'Đã tự cấu hình cờ khởi chạy — Khởi động lại 1 lần cho giới hạn Context',
@@ -43487,6 +43498,7 @@ function getMountModeOptions() {
   return [
     { value: 'dual', label: t('settings.str.mountDual') },
     { value: 'composer', label: t('settings.str.mountComposer') },
+    { value: 'composer-top', label: t('settings.str.mountComposerTop') },
     { value: 'sidebar', label: t('settings.str.mountSidebar') },
   ];
 }
@@ -54131,19 +54143,46 @@ function resolveActiveDockTarget(options = undefined) {
     options?.mountMode ||
     normalizeClientWindowMountMode(rawMode, settings?.enableWindowOverlay);
   if (isIdeExtensionChatFrame()) {
-    if (mountMode !== 'composer') return null;
-    return findHostComposerAutoTarget(
-      options?.capsuleNode || null,
-      options?.portalNode || null,
-      options?.patchedNode || null
-    );
-  }
-  if (mountMode === 'composer') {
+    if (mountMode !== 'composer' && mountMode !== 'composer-top') return null;
     const composerTarget = findHostComposerAutoTarget(
       options?.capsuleNode || null,
       options?.portalNode || null,
       options?.patchedNode || null
     );
+    if (mountMode === 'composer-top' && composerTarget?.titlebar) {
+      const parent = composerTarget.titlebar.parentElement || composerTarget.titlebar.parentNode;
+      if (parent) {
+        return {
+          kind: 'composer-top',
+          workbench: composerTarget.workbench || null,
+          titlebar: composerTarget.titlebar,
+          targetContainer: parent,
+          anchorNode: composerTarget.titlebar,
+          actionToolbar: null,
+        };
+      }
+    }
+    return composerTarget;
+  }
+  if (mountMode === 'composer' || mountMode === 'composer-top') {
+    const composerTarget = findHostComposerAutoTarget(
+      options?.capsuleNode || null,
+      options?.portalNode || null,
+      options?.patchedNode || null
+    );
+    if (mountMode === 'composer-top' && composerTarget?.titlebar) {
+      const parent = composerTarget.titlebar.parentElement || composerTarget.titlebar.parentNode;
+      if (parent) {
+        return {
+          kind: 'composer-top',
+          workbench: composerTarget.workbench || null,
+          titlebar: composerTarget.titlebar,
+          targetContainer: parent,
+          anchorNode: composerTarget.titlebar,
+          actionToolbar: null,
+        };
+      }
+    }
     if (composerTarget) return composerTarget;
   }
   const ideTarget = findIdeWorkbenchTitlebar();
@@ -55068,7 +55107,7 @@ function mountWindowOverlay() {
     }
     if (capsuleHost.style.display === 'none') return false;
     if (!dock.targetContainer?.contains?.(capsuleHost) || curDockAttr !== dock.kind) return false;
-    if (dock.kind === 'composer') {
+    if (dock.kind === 'composer' || dock.kind === 'composer-top') {
       if (dock.anchorNode) {
         if (!isImmediatelyBeforeNode(capsuleHost, dock.anchorNode)) return false;
       } else {
@@ -55087,7 +55126,7 @@ function mountWindowOverlay() {
 
   function updateFixedFallbackPosition() {
     const dockMode = capsuleHost.getAttribute('data-dock');
-    if (dockMode === 'flow' || dockMode === 'ide-titlebar' || dockMode === 'composer') {
+    if (dockMode === 'flow' || dockMode === 'ide-titlebar' || dockMode === 'composer' || dockMode === 'composer-top') {
       capsuleHost.style.top = '';
       capsuleHost.style.right = '';
       return;
@@ -55123,6 +55162,12 @@ function mountWindowOverlay() {
   function measureAvailableTitlebarWidth(dockTarget) {
     try {
       const titlebar = dockTarget?.titlebar || null;
+      if (dockTarget?.kind === 'composer-top' && titlebar?.getBoundingClientRect) {
+        const cRect = titlebar.getBoundingClientRect();
+        if (cRect.width > 0) {
+          return Math.max(120, Math.floor(cRect.width - 16));
+        }
+      }
       if (dockTarget?.kind === 'composer' && titlebar?.getBoundingClientRect) {
         const cRect = titlebar.getBoundingClientRect();
         const aRect = dockTarget.anchorNode?.getBoundingClientRect?.();
@@ -55283,7 +55328,8 @@ function mountWindowOverlay() {
         Math.round(MULTI_PANEL_WIDTH * panelScale),
         Math.max(280, vw - 24)
       );
-      const isDockComposer = capsuleHost.getAttribute('data-dock') === 'composer';
+      const dockAttrNow = capsuleHost.getAttribute('data-dock');
+      const isDockComposer = dockAttrNow === 'composer' || dockAttrNow === 'composer-top';
 
       if (multiOpen) {
         const mRect = multiBtn.getBoundingClientRect?.() || bRect;
@@ -55532,7 +55578,7 @@ function mountWindowOverlay() {
         capsuleHost.style.display = '';
       }
       const { kind, titlebar, targetContainer, actionToolbar } = dockTarget;
-      if (kind === 'composer') {
+      if (kind === 'composer' || kind === 'composer-top') {
         if (patchedActionToolbar !== actionToolbar) {
           restorePatchedActionToolbar();
           if (actionToolbar?.style) {
@@ -55561,11 +55607,11 @@ function mountWindowOverlay() {
             targetContainer.appendChild(capsuleHost);
           }
         }
-        patchAttr(capsuleHost, 'data-dock', 'composer');
+        patchAttr(capsuleHost, 'data-dock', kind);
         patchAttr(
           capsuleHost,
           'data-composer-push',
-          dockTarget.needsAutoMarginTransfer ? '1' : null
+          kind === 'composer' && dockTarget.needsAutoMarginTransfer ? '1' : null
         );
       } else if (kind === 'ide-titlebar') {
         if (patchedActionToolbar !== actionToolbar) {
@@ -55922,7 +55968,8 @@ function mountWindowOverlay() {
           ? t('capsule.hoverNewVer', { ver: latestVer })
           : t('capsule.hoverNewVerGeneric')
       );
-      const isComposerDock = capsuleHost.getAttribute('data-dock') === 'composer';
+      const dockAttrHint = capsuleHost.getAttribute('data-dock');
+      const isComposerDock = dockAttrHint === 'composer' || dockAttrHint === 'composer-top';
       patchText(
         hoverUpdateHintText,
         latestVer

@@ -846,6 +846,7 @@ export const I18N_MESSAGES_ZH_CN = Object.freeze({
   'settings.str.mountMode': '面板挂载方式',
   'settings.str.mountDual': '双栖挂载 (顶部栏 + 侧边栏)',
   'settings.str.mountComposer': '输入框挂载 (输入框 + 侧边栏)',
+  'settings.str.mountComposerTop': '输入框上方 (输入框顶部 + 侧边栏)',
   'settings.str.mountSidebar': '仅侧边栏',
   'settings.bridge.restartTitle': '已自动补齐启动参数，重启一次即可启用悬浮胶囊',
   'settings.bridge.ctxRestartTitle': '已自动补齐启动参数，重启一次即可激活上下文覆写',

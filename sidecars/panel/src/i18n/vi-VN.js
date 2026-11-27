@@ -846,6 +846,7 @@ export const I18N_MESSAGES_VI_VN = Object.freeze({
   'settings.str.mountMode': 'Vị trí gắn bảng',
   'settings.str.mountDual': 'Gắn đôi (Thanh tiêu đề + Sidebar)',
   'settings.str.mountComposer': 'Gắn khung nhập (Ô nhập liệu + Sidebar)',
+  'settings.str.mountComposerTop': 'Trên khung nhập (Phía trên ô nhập + Sidebar)',
   'settings.str.mountSidebar': 'Chỉ Sidebar',
   'settings.bridge.restartTitle': 'Đã tự cấu hình cờ khởi chạy — Khởi động lại 1 lần để kích hoạt',
   'settings.bridge.ctxRestartTitle': 'Đã tự cấu hình cờ khởi chạy — Khởi động lại 1 lần cho giới hạn Context',

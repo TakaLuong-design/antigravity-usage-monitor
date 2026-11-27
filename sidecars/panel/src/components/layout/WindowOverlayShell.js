@@ -898,7 +898,7 @@ export function mountWindowOverlay() {
     }
     if (capsuleHost.style.display === 'none') return false;
     if (!dock.targetContainer?.contains?.(capsuleHost) || curDockAttr !== dock.kind) return false;
-    if (dock.kind === 'composer') {
+    if (dock.kind === 'composer' || dock.kind === 'composer-top') {
       if (dock.anchorNode) {
         if (!isImmediatelyBeforeNode(capsuleHost, dock.anchorNode)) return false;
       } else {
@@ -917,7 +917,7 @@ export function mountWindowOverlay() {
 
   function updateFixedFallbackPosition() {
     const dockMode = capsuleHost.getAttribute('data-dock');
-    if (dockMode === 'flow' || dockMode === 'ide-titlebar' || dockMode === 'composer') {
+    if (dockMode === 'flow' || dockMode === 'ide-titlebar' || dockMode === 'composer' || dockMode === 'composer-top') {
       capsuleHost.style.top = '';
       capsuleHost.style.right = '';
       return;
@@ -953,6 +953,12 @@ export function mountWindowOverlay() {
   function measureAvailableTitlebarWidth(dockTarget) {
     try {
       const titlebar = dockTarget?.titlebar || null;
+      if (dockTarget?.kind === 'composer-top' && titlebar?.getBoundingClientRect) {
+        const cRect = titlebar.getBoundingClientRect();
+        if (cRect.width > 0) {
+          return Math.max(120, Math.floor(cRect.width - 16));
+        }
+      }
       if (dockTarget?.kind === 'composer' && titlebar?.getBoundingClientRect) {
         const cRect = titlebar.getBoundingClientRect();
         const aRect = dockTarget.anchorNode?.getBoundingClientRect?.();
@@ -1113,7 +1119,8 @@ export function mountWindowOverlay() {
         Math.round(MULTI_PANEL_WIDTH * panelScale),
         Math.max(280, vw - 24)
       );
-      const isDockComposer = capsuleHost.getAttribute('data-dock') === 'composer';
+      const dockAttrNow = capsuleHost.getAttribute('data-dock');
+      const isDockComposer = dockAttrNow === 'composer' || dockAttrNow === 'composer-top';
 
       if (multiOpen) {
         const mRect = multiBtn.getBoundingClientRect?.() || bRect;
@@ -1362,7 +1369,7 @@ export function mountWindowOverlay() {
         capsuleHost.style.display = '';
       }
       const { kind, titlebar, targetContainer, actionToolbar } = dockTarget;
-      if (kind === 'composer') {
+      if (kind === 'composer' || kind === 'composer-top') {
         if (patchedActionToolbar !== actionToolbar) {
           restorePatchedActionToolbar();
           if (actionToolbar?.style) {
@@ -1391,11 +1398,11 @@ export function mountWindowOverlay() {
             targetContainer.appendChild(capsuleHost);
           }
         }
-        patchAttr(capsuleHost, 'data-dock', 'composer');
+        patchAttr(capsuleHost, 'data-dock', kind);
         patchAttr(
           capsuleHost,
           'data-composer-push',
-          dockTarget.needsAutoMarginTransfer ? '1' : null
+          kind === 'composer' && dockTarget.needsAutoMarginTransfer ? '1' : null
         );
       } else if (kind === 'ide-titlebar') {
         if (patchedActionToolbar !== actionToolbar) {
@@ -1753,7 +1760,8 @@ export function mountWindowOverlay() {
           ? t('capsule.hoverNewVer', { ver: latestVer })
           : t('capsule.hoverNewVerGeneric')
       );
-      const isComposerDock = capsuleHost.getAttribute('data-dock') === 'composer';
+      const dockAttrHint = capsuleHost.getAttribute('data-dock');
+      const isComposerDock = dockAttrHint === 'composer' || dockAttrHint === 'composer-top';
       patchText(
         hoverUpdateHintText,
         latestVer

@@ -846,6 +846,7 @@ export const I18N_MESSAGES_EN_US = Object.freeze({
   'settings.str.mountMode': 'Panel Mount Mode',
   'settings.str.mountDual': 'Dual Mount (Titlebar + Sidebar)',
   'settings.str.mountComposer': 'Composer Mount (Input Box + Sidebar)',
+  'settings.str.mountComposerTop': 'Above Composer (Above Input Box + Sidebar)',
   'settings.str.mountSidebar': 'Sidebar Only',
   'settings.bridge.restartTitle': 'Launch Flag Auto-Configured — Restart Once to Activate',
   'settings.bridge.ctxRestartTitle': 'Launch Flag Auto-Configured — Restart Once for Context Override',
